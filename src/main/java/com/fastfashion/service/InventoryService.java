@@ -3,6 +3,7 @@ package com.fastfashion.service;
 import com.fastfashion.domain.Inventory;
 import com.fastfashion.repository.InventoryRepository;
 import jakarta.persistence.OptimisticLockException;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,9 +29,9 @@ public class InventoryService {
             try {
                 inventoryRepository.save(inv);
                 return;
-            } catch (OptimisticLockException e) {
-                if (attempts >= 3) throw new IllegalStateException("Inventory conflict, try again");
-                try { Thread.sleep(50L * attempts); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); }
+            } catch (OptimisticLockException | OptimisticLockingFailureException e) {
+                if (attempts >= 5) throw new IllegalStateException("Inventory conflict, try again");
+                try { Thread.sleep(25L * attempts); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); }
             }
         }
     }
