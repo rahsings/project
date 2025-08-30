@@ -16,7 +16,7 @@ Caffeine is default. Next: add conditional Redis CacheManager when spring.data.r
 
 8. ✅ Seed demo user and document auth flow
 
-9. ⏳ Basic tests for repositories, services, controllers
+9. ✅ Basic tests for repositories, services, controllers
 
 10. ✅ Pin spring-boot-maven-plugin version to 3.3.3 and verify build/run
 

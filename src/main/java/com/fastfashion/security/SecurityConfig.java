@@ -55,7 +55,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(reg -> reg
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/api/auth/**", "/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/h2-console/**", "/actuator/health").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/shops/**", "/api/products/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/shops/**", "/api/products/**", "/api/notifications/**").permitAll()
                         .anyRequest().authenticated())
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
