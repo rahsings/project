@@ -16,16 +16,22 @@ public class InventoryService {
 
     @Transactional
     public void reserve(Long productId, int qty) {
-        Inventory inv = inventoryRepository.findByProductId(productId);
-        if (inv == null || inv.getAvailable() < qty) {
-            throw new IllegalStateException("Insufficient stock");
-        }
-        inv.setAvailable(inv.getAvailable() - qty);
-        inv.setReserved(inv.getReserved() + qty);
-        try {
-            inventoryRepository.save(inv);
-        } catch (OptimisticLockException e) {
-            throw new IllegalStateException("Inventory conflict, try again");
+        int attempts = 0;
+        while (true) {
+            attempts++;
+            Inventory inv = inventoryRepository.findByProductId(productId);
+            if (inv == null || inv.getAvailable() < qty) {
+                throw new IllegalStateException("Insufficient stock");
+            }
+            inv.setAvailable(inv.getAvailable() - qty);
+            inv.setReserved(inv.getReserved() + qty);
+            try {
+                inventoryRepository.save(inv);
+                return;
+            } catch (OptimisticLockException e) {
+                if (attempts >= 3) throw new IllegalStateException("Inventory conflict, try again");
+                try { Thread.sleep(50L * attempts); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); }
+            }
         }
     }
 

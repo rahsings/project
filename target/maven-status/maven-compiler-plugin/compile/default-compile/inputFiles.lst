@@ -12,9 +12,11 @@
 /workspace/project/src/main/java/com/fastfashion/repository/UserRepository.java
 /workspace/project/src/main/java/com/fastfashion/web/NotificationController.java
 /workspace/project/src/main/java/com/fastfashion/domain/Order.java
+/workspace/project/src/main/java/com/fastfashion/config/CacheConfig.java
 /workspace/project/src/main/java/com/fastfashion/repository/Repositories.java
 /workspace/project/src/main/java/com/fastfashion/domain/OrderStatus.java
 /workspace/project/src/main/java/com/fastfashion/repository/ProductRepository.java
+/workspace/project/src/main/java/com/fastfashion/web/PaymentController.java
 /workspace/project/src/main/java/com/fastfashion/domain/ReturnRequest.java
 /workspace/project/src/main/java/com/fastfashion/repository/ReturnRequestRepository.java
 /workspace/project/src/main/java/com/fastfashion/service/UserService.java
@@ -22,6 +24,7 @@
 /workspace/project/src/main/java/com/fastfashion/domain/Shop.java
 /workspace/project/src/main/java/com/fastfashion/domain/OrderItem.java
 /workspace/project/src/main/java/com/fastfashion/domain/Payment.java
+/workspace/project/src/main/java/com/fastfashion/service/ReturnService.java
 /workspace/project/src/main/java/com/fastfashion/web/AuthController.java
 /workspace/project/src/main/java/com/fastfashion/web/OrderController.java
 /workspace/project/src/main/java/com/fastfashion/web/ProfileController.java
@@ -31,4 +34,6 @@
 /workspace/project/src/main/java/com/fastfashion/service/InventoryService.java
 /workspace/project/src/main/java/com/fastfashion/repository/ShopRepository.java
 /workspace/project/src/main/java/com/fastfashion/web/ShopController.java
+/workspace/project/src/main/java/com/fastfashion/web/ReturnController.java
+/workspace/project/src/main/java/com/fastfashion/service/PaymentService.java
 /workspace/project/src/main/java/com/fastfashion/repository/OrderRepository.java

@@ -70,4 +70,24 @@ public class OrderService {
         notificationService.notifyUser(order.getUser().getId(), "order-cancelled", saved.getId());
         return saved;
     }
+
+    public java.util.Optional<Order> findById(Long id) {
+        return orderRepository.findById(id);
+    }
+
+    @Transactional
+    public Order updateStatus(Long orderId, OrderStatus status) {
+        Order order = orderRepository.findById(orderId).orElseThrow();
+        order.setStatus(status);
+        Order saved = orderRepository.save(order);
+        String event = switch (status) {
+            case OUT_FOR_DELIVERY -> "order-out-for-delivery";
+            case DELIVERED -> "order-delivered";
+            case CONFIRMED -> "order-confirmed";
+            default -> "order-updated";
+        };
+        notificationService.notifyUser(order.getUser().getId(), event, saved.getId());
+        return saved;
+    }
 }
+

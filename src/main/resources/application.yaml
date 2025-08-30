@@ -29,6 +29,14 @@ spring:
     type: caffeine
 
 management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
 
 ---
 spring:

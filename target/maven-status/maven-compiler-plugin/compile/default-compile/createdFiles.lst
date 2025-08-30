@@ -10,6 +10,8 @@ com/fastfashion/FastFashionApplication.class
 com/fastfashion/service/InventoryService.class
 com/fastfashion/repository/ShopRepository.class
 com/fastfashion/web/dto/OrderDtos.class
+com/fastfashion/service/ReturnService.class
+com/fastfashion/web/PaymentController.class
 com/fastfashion/web/OrderController.class
 com/fastfashion/web/dto/AuthDtos$TokenResponse.class
 com/fastfashion/service/NotificationService.class
@@ -31,9 +33,12 @@ com/fastfashion/security/JwtService.class
 com/fastfashion/repository/OrderItemRepository.class
 com/fastfashion/domain/User.class
 com/fastfashion/domain/Inventory.class
+com/fastfashion/service/PaymentService.class
 com/fastfashion/security/SecurityConfig.class
 com/fastfashion/config/WebConfig.class
 com/fastfashion/domain/Payment.class
+com/fastfashion/web/ReturnController.class
 com/fastfashion/web/dto/AuthDtos$RegisterRequest.class
 com/fastfashion/web/ProfileController.class
 com/fastfashion/domain/Product.class
+com/fastfashion/config/CacheConfig.class

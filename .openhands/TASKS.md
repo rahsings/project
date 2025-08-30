@@ -1,27 +1,25 @@
 # Task List
 
-1. ✅ Initialize Spring Boot project (Maven), setup dependencies and base structure
+1. ✅ Implement OrderService.findById(Long) and wire to OrderController GET /api/orders/{id}
+Added findById and compiled
+2. ⏳ Add order status transitions OUT_FOR_DELIVERY and DELIVERED with notifications
 
-2. ✅ Implement domain model: User, Shop, Product, Inventory, Order, OrderItem, Payment, ReturnRequest and enums
+3. ⏳ Extend ReturnService to approve/reject/pickup and PaymentService to simulate failure/refund
 
-3. 🔄 Configure persistence (H2 dev, Postgres prod) and JPA repositories
-Repositories split into individual files; H2 runtime enabled. Need application-prod.yaml for Postgres and profile switching.
-4. ✅ Implement JWT authentication (register/login) and security configuration
+4. 🔄 Resolve 403 for unauthenticated GET /api/shops via external route (CORS/proxy)
+SecurityConfig permits GET; need to allow unauth and ensure no JWT requirement or 403 from missing Origin. Test external after run.
+5. ⏳ Finalize prod profile docs and env-based Postgres config
 
-5. 🔄 Implement core APIs: Shops, Products, Orders (place, status, cancel), Payments (simulate), Returns
-Orders place/cancel implemented; profile endpoint added. Payments and returns pending.
-6. 🔄 Add stock reservation with optimistic locking and cancellation workflow on inventory conflicts
-Optimistic locking field on Inventory and reserve/release implemented. Need conflict retry/compensation and cancellation notification.
-7. 🔄 Add caching for read-heavy endpoints (shops/products) with Caffeine; Redis-ready configuration
-spring-boot-starter-cache + caffeine added; spring.cache.type=caffeine set. Redis-ready config pending.
-8. ✅ Implement SSE endpoint for real-time order status updates and notification service
+6. 🔄 Define Caffeine caches/TTL and Redis-ready toggle
+Added CacheConfig with TTL; Redis-ready pending
+7. ⏳ Add optimistic locking retry with backoff for inventory reserve/release
 
-9. ✅ CORS and server configuration for port 12000 and 0.0.0.0
+8. ⏳ Seed demo user and document auth flow
 
-10. 🔄 Seed sample data and provide API usage examples
-DataSeeder in place; consider seeding a demo user.
-11. 🔄 Build, run, and verify service endpoints
-App running on port 12000. Next: hit endpoints.
-12. ✅ Initialize git repo and commit code
+9. ⏳ Basic tests for repositories, services, controllers
+
+10. ⏳ Pin spring-boot-maven-plugin version to 3.3.3 and verify build/run
+
+11. 🔄 Rebuild, run, and verify new Payment/Return endpoints; commit changes
 
 
