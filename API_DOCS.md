@@ -52,6 +52,19 @@ Run (prod)
 - export JWT_SECRET=... (32+ chars)
 - java -jar target/fastfashion-0.0.1-SNAPSHOT.jar
 
+
+Optional: Redis for Caching
+- docker compose example:
+```
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+```
+- Then start the app with: SPRING_DATA_REDIS_HOST=localhost (and optionally SPRING_DATA_REDIS_PORT, SPRING_DATA_REDIS_PASSWORD)
+
 Curl Examples
 1) Login
 curl -sX POST http://localhost:12000/api/auth/login -H 'Content-Type: application/json' \
