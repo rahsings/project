@@ -1,0 +1,63 @@
+server:
+  port: 12000
+  address: 0.0.0.0
+  servlet:
+    context-path: /
+
+  forward-headers-strategy: framework
+
+spring:
+  application:
+    name: fastfashion
+  datasource:
+    url: jdbc:h2:mem:fastfashion;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ''
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  cache:
+    type: caffeine
+
+management:
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fastfashion
+    driver-class-name: org.postgresql.Driver
+    username: fastfashion
+    password: changeme
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+logging:
+  level:
+    org.springframework.security: INFO
+
+app:
+  security:
+    jwtSecret: change-me-in-prod-32bytes-minimum-change-me
+    jwtExpirationSeconds: 604800
+  cors:
+    allowed-origins: "*"
+    allowed-methods: "GET,POST,PUT,DELETE,OPTIONS"
+    allowed-headers: "*"

@@ -15,13 +15,15 @@ public class OrderService {
     private final ProductRepository productRepository;
     private final ShopRepository shopRepository;
     private final InventoryService inventoryService;
+    private final NotificationService notificationService;
 
-    public OrderService(OrderRepository orderRepository, OrderItemRepository orderItemRepository, ProductRepository productRepository, ShopRepository shopRepository, InventoryService inventoryService) {
+    public OrderService(OrderRepository orderRepository, OrderItemRepository orderItemRepository, ProductRepository productRepository, ShopRepository shopRepository, InventoryService inventoryService, NotificationService notificationService) {
         this.orderRepository = orderRepository;
         this.orderItemRepository = orderItemRepository;
         this.productRepository = productRepository;
         this.shopRepository = shopRepository;
         this.inventoryService = inventoryService;
+        this.notificationService = notificationService;
     }
 
     @Transactional
@@ -52,6 +54,7 @@ public class OrderService {
         order.setItems(items);
         Order saved = orderRepository.save(order);
         for (OrderItem it : items) orderItemRepository.save(it);
+        notificationService.notifyUser(user.getId(), "order-placed", saved.getId());
         return saved;
     }
 
@@ -63,6 +66,8 @@ public class OrderService {
             inventoryService.release(it.getProduct().getId(), it.getQuantity());
         }
         order.setStatus(OrderStatus.CANCELLED);
-        return orderRepository.save(order);
+        Order saved = orderRepository.save(order);
+        notificationService.notifyUser(order.getUser().getId(), "order-cancelled", saved.getId());
+        return saved;
     }
 }

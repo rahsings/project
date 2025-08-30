@@ -26,7 +26,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList(allowedOrigins.split(",")));
+        // For dev behind a proxy, use allowedOriginPatterns to support wildcard with credentials
+        config.setAllowedOriginPatterns(Arrays.asList(allowedOrigins.split(",")));
         config.setAllowedMethods(Arrays.asList(allowedMethods.split(",")));
         config.setAllowedHeaders(Arrays.asList(allowedHeaders.split(",")));
         config.setAllowCredentials(true);
