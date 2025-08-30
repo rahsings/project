@@ -20,7 +20,9 @@ public class NotificationController {
 
     @GetMapping(path = "/subscribe", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public SseEmitter subscribe(@AuthenticationPrincipal UserDetails principal) {
-        // In real world use user id
+        if (principal == null) {
+            return notificationService.subscribe(0L);
+        }
         return notificationService.subscribe((long) principal.getUsername().hashCode());
     }
 }
