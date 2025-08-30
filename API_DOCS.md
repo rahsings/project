@@ -24,9 +24,9 @@ Payments (simulated)
 
 Returns
 - POST /api/returns/{orderId} (Bearer)
-- POST /api/returns/admin/{returnId}/approve (Bearer)
-- POST /api/returns/admin/{returnId}/reject?reason=... (Bearer)
-- POST /api/returns/admin/{returnId}/pickup (Bearer)
+- POST /api/returns/{returnId}/approve (Bearer)
+- POST /api/returns/{returnId}/reject?reason=... (Bearer)
+- POST /api/returns/{returnId}/pickup (Bearer)
 
 SSE Notifications
 - GET /api/notifications/subscribe -> text/event-stream
