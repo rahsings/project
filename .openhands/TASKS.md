@@ -24,4 +24,6 @@ Caffeine CacheManager implemented with TTL; Redis-ready note pending
 
 12. ✅ Add /api/orders/me to list current user's orders
 
+13. ⏳ Run application on 12000 and verify unauthenticated GETs and CORS headers
+Local environment lacks mvn/java; provide instructions and curl examples for user to validate
 
