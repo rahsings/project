@@ -1,5 +1,6 @@
 package com.fastfashion.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
@@ -14,9 +15,10 @@ import java.time.Duration;
 @ConditionalOnProperty(name = "spring.data.redis.host")
 public class RedisCacheConfig {
     @Bean
-    public CacheManager redisCacheManager(RedisConnectionFactory connectionFactory) {
+    public CacheManager redisCacheManager(RedisConnectionFactory connectionFactory,
+                                          @Value("${app.cache.ttl-seconds:300}") long ttlSeconds) {
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofSeconds(Long.getLong("app.cache.ttl-seconds", 300)))
+                .entryTtl(Duration.ofSeconds(ttlSeconds))
                 .disableCachingNullValues();
         return RedisCacheManager.builder(connectionFactory)
                 .cacheDefaults(config)
