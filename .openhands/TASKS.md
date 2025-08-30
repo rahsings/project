@@ -7,11 +7,11 @@
 3. ✅ Extend ReturnService to approve/reject/pickup and PaymentService to simulate failure/refund
 
 4. 🔄 Resolve 403 for unauthenticated GET /api/shops via external route (CORS/proxy)
-SecurityConfig permits GET; need to test external proxy with Origin and without token and evaluate responses
+Permitted OPTIONS preflight globally. Next: verify via curl with -H Origin & -H Access-Control-Request-Method once app is running externally.
 5. ✅ Finalize prod profile docs and env-based Postgres config
 
 6. 🔄 Define Caffeine caches/TTL and Redis-ready toggle
-Caffeine CacheManager implemented with TTL; Redis-ready note pending
+Caffeine is default. Next: add conditional Redis CacheManager when spring.data.redis.host is present, without introducing new deps unless user approves.
 7. ✅ Add optimistic locking retry with backoff for inventory reserve/release
 
 8. ✅ Seed demo user and document auth flow
@@ -25,5 +25,7 @@ Caffeine CacheManager implemented with TTL; Redis-ready note pending
 12. ✅ Add /api/orders/me to list current user's orders
 
 13. ⏳ Run application on 12000 and verify unauthenticated GETs and CORS headers
-Local environment lacks mvn/java; provide instructions and curl examples for user to validate
+Provide run steps; runtime lacks Java/Maven here. User to run locally or in container.
+14. ✅ Add API_DOCS.md with curl examples and demo creds
+
 
