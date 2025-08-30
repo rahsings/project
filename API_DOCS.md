@@ -29,7 +29,8 @@ Returns
 - POST /api/returns/admin/{returnId}/pickup (Bearer)
 
 SSE Notifications
-- GET /api/notifications/subscribe (Bearer) -> text/event-stream
+- GET /api/notifications/subscribe -> text/event-stream
+  Notes: Anonymous clients subscribe to channel 0L; authenticated users subscribe to their user-specific channel.
 
 CORS
 - Configured via app.cors.*; OPTIONS preflight permitted globally.
