@@ -10,11 +10,13 @@ public class DataSeeder implements CommandLineRunner {
     private final ShopRepository shopRepository;
     private final ProductRepository productRepository;
     private final InventoryRepository inventoryRepository;
+    private final UserService userService;
 
-    public DataSeeder(ShopRepository shopRepository, ProductRepository productRepository, InventoryRepository inventoryRepository) {
+    public DataSeeder(ShopRepository shopRepository, ProductRepository productRepository, InventoryRepository inventoryRepository, UserService userService) {
         this.shopRepository = shopRepository;
         this.productRepository = productRepository;
         this.inventoryRepository = inventoryRepository;
+        this.userService = userService;
     }
 
     @Override
@@ -33,5 +35,9 @@ public class DataSeeder implements CommandLineRunner {
         Inventory i2 = new Inventory(); i2.setProduct(p2); i2.setAvailable(5); i2.setReserved(0);
         Inventory i3 = new Inventory(); i3.setProduct(p3); i3.setAvailable(3); i3.setReserved(0);
         inventoryRepository.save(i1); inventoryRepository.save(i2); inventoryRepository.save(i3);
+
+        // demo users
+        userService.register("demo@fastfashion.local", "password", "Demo User", "+91-9999999999");
+        userService.register("merchant@fastfashion.local", "password", "Merchant User", "+91-8888888888");
     }
 }
