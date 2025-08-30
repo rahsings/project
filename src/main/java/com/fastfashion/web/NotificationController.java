@@ -1,5 +1,7 @@
 package com.fastfashion.web;
 
+import com.fastfashion.domain.User;
+import com.fastfashion.repository.UserRepository;
 import com.fastfashion.service.NotificationService;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,9 +15,11 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 @RequestMapping("/api/notifications")
 public class NotificationController {
     private final NotificationService notificationService;
+    private final UserRepository userRepository;
 
-    public NotificationController(NotificationService notificationService) {
+    public NotificationController(NotificationService notificationService, UserRepository userRepository) {
         this.notificationService = notificationService;
+        this.userRepository = userRepository;
     }
 
     @GetMapping(path = "/subscribe", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
@@ -23,6 +27,7 @@ public class NotificationController {
         if (principal == null) {
             return notificationService.subscribe(0L);
         }
-        return notificationService.subscribe((long) principal.getUsername().hashCode());
+        User u = userRepository.findByEmail(principal.getUsername());
+        return notificationService.subscribe(u.getId());
     }
 }
