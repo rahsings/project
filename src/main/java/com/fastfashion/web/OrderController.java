@@ -39,6 +39,13 @@ public class OrderController {
         return ResponseEntity.ok(orderService.cancelOrder(id));
     }
 
+
+    @GetMapping("/me")
+    public ResponseEntity<java.util.List<Order>> myOrders(@AuthenticationPrincipal UserDetails principal) {
+        User u = userRepository.findByEmail(principal.getUsername());
+        return ResponseEntity.ok(orderService.findByUserId(u.getId()));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Order> get(@PathVariable Long id) {
         return ResponseEntity.of(orderService.findById(id));

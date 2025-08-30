@@ -75,6 +75,10 @@ public class OrderService {
         return orderRepository.findById(id);
     }
 
+    public java.util.List<Order> findByUserId(Long userId) {
+        return orderRepository.findByUserId(userId);
+    }
+
     @Transactional
     public Order updateStatus(Long orderId, OrderStatus status) {
         Order order = orderRepository.findById(orderId).orElseThrow();
