@@ -35,6 +35,10 @@ SSE Notifications
 CORS
 - Configured via app.cors.*; OPTIONS preflight permitted globally.
 
+Caching
+- Default: Caffeine with TTL app.cache.ttl-seconds (default 300s); caches: shops, productsByShop
+- Enable Redis: add spring.data.redis.host (and port/password). When present, RedisCacheManager is used automatically.
+
 Demo Credentials
 - demo@fastfashion.local / password
 - merchant@fastfashion.local / password
