@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: fastfashion-redis
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping | grep PONG || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+volumes:
+  redis-data:
